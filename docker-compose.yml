@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  api:
+    restart: unless-stopped
+    build:
+      target: development
+      context: .
+    volumes:
+      - ./src/:/src/src
+      - /src/node_modules
+    command: npm run start:dev
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:${PORT}
+    expose:
+      - ${PORT}
+
